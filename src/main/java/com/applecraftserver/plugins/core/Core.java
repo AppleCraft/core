@@ -12,9 +12,10 @@ import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginEnableEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Core extends JavaPlugin implements IModule, Listener {
+public class Core extends JavaPlugin implements Listener, Plugin {
 
 	public static Core instance;
 	public static final Logger logger = Logger.getLogger("Minecraft");
@@ -31,6 +32,8 @@ public class Core extends JavaPlugin implements IModule, Listener {
 		options.copyDefaults(true);
 		options.copyHeader(true);
 		saveDefaultConfig();
+
+        getServer().getPluginManager().registerEvents(this, this);
 
 		try {
 			pool = new MySQLConnectionPool("localhost", "root", "password", "server");
@@ -72,7 +75,7 @@ public class Core extends JavaPlugin implements IModule, Listener {
 	@EventHandler
 	public void nonModulePlugins(PluginEnableEvent e) {
 		Class clazz = e.getPlugin().getClass();
-		if (!Arrays.asList(clazz.getInterfaces()).contains(IModule.class)) {
+		if (!Arrays.asList(clazz.getClasses()).contains(IPlugin.class)) {
 			logger.warning("Non-modular plugin " + e.getPlugin().getName() + " found!");
 		}
 	}

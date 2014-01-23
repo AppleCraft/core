@@ -2,9 +2,10 @@ package com.applecraftserver.plugins.core;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
-public abstract class IPlugin extends JavaPlugin implements IModule {
+public abstract class IPlugin extends JavaPlugin {
 
 	@Override
 	public abstract void onLoad();
