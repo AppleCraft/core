@@ -1,4 +1,4 @@
 core
 ====
 
-core library for 1.8 modules
+core library type... _thing_ for 1.8 modules.
