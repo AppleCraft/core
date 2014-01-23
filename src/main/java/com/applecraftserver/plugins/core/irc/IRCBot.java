@@ -9,7 +9,7 @@ import org.pircbotx.hooks.ListenerAdapter;
 public class IRCBot extends ListenerAdapter {
 	public PircBotX pbot;
 	private Configuration.Builder config;
-	
+
 	public IRCBot() {
 		config = new Configuration.Builder()
 				.setName(Core.instance.getConfig().getString("irc.nick"))
@@ -33,5 +33,5 @@ public class IRCBot extends ListenerAdapter {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
