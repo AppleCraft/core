@@ -1,12 +1,24 @@
 package com.applecraftserver.plugins.core.util;
 
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
+
 public class StringUtils {
+
+	public static String toProperCase(String name) {
+		try {
+			name.substring(0, 1);
+			name.substring(1);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return name.toUpperCase();
+		}
+		return name.substring(0, 1).toUpperCase() +
+				name.substring(1).toLowerCase();
+	}
 
 	public static String getLocString(Location l) {
 		if (l == null) {
@@ -62,9 +74,9 @@ public class StringUtils {
 				}
 				H[i + 1][j + 1] =
 						MathUtils.min(H[i][j] + d,
-						H[i + 1][j] + 1,
-						H[i][j + 1] + 1,
-						H[i1][j1] + (i - i1 - 1) + 1 + (j - j1 - 1));
+								H[i + 1][j] + 1,
+								H[i][j + 1] + 1,
+								H[i1][j1] + (i - i1 - 1) + 1 + (j - j1 - 1));
 			}
 			DA[a.charAt(i - 1)] = i;
 		}
