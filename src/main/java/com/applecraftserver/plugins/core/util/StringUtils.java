@@ -9,6 +9,10 @@ import java.util.List;
 
 public class StringUtils {
 
+	public static String normalizeSpacing(String input) {
+		return input.replaceAll("\\s+", " ");
+	}
+
 	public static String toProperCase(String name) {
 		try {
 			name.substring(0, 1);
