@@ -1,12 +1,6 @@
 package com.applecraftserver.plugins.core;
 
 import com.applecraftserver.plugins.core.irc.IRCBot;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.event.EventHandler;
@@ -14,6 +8,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class Core extends JavaPlugin implements Listener, Plugin {
 
@@ -33,7 +33,7 @@ public class Core extends JavaPlugin implements Listener, Plugin {
 		options.copyHeader(true);
 		saveDefaultConfig();
 
-        getServer().getPluginManager().registerEvents(this, this);
+		getServer().getPluginManager().registerEvents(this, this);
 
 		try {
 			pool = new MySQLConnectionPool("localhost", "root", "password", "server");
@@ -52,7 +52,7 @@ public class Core extends JavaPlugin implements Listener, Plugin {
 			logger.severe("JDBC not found! Something's seriously screwed up");
 			ex.printStackTrace();
 			Bukkit.getPluginManager().disablePlugin(this);
-            this.setEnabled(false);
+			this.setEnabled(false);
 			return;
 		}
 
@@ -75,8 +75,8 @@ public class Core extends JavaPlugin implements Listener, Plugin {
 	@EventHandler
 	public void nonModulePlugins(PluginEnableEvent e) {
 		Class clazz = e.getPlugin().getClass();
-		if (!Arrays.asList(clazz.getClasses()).contains(IPlugin.class)) {
-			logger.warning("Non-modular plugin " + e.getPlugin().getName() + " found!");
+		if (!clazz.isAssignableFrom(IPlugin.class)) {
+			IPlugin.$("core", "Non-modular plugin " + e.getPlugin().getName() + " found!");
 		}
 	}
 }
