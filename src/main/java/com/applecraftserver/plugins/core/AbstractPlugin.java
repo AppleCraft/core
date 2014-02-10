@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public abstract class IPlugin extends JavaPlugin {
+public abstract class AbstractPlugin extends JavaPlugin {
 
 	@Override
 	public abstract void onLoad();
