@@ -1,6 +1,7 @@
 package com.applecraftserver.plugins.core;
 
 import com.applecraftserver.plugins.core.irc.IRCBot;
+import com.applecraftserver.plugins.core.permissions.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.event.EventHandler;
@@ -42,8 +43,8 @@ public class Core extends JavaPlugin implements Listener, Plugin {
 			PreparedStatement testStatement = connection.prepareStatement("SELECT COUNT(id) FROM players");
 			ResultSet testResultSet = testStatement.executeQuery();
 			if (testResultSet.next()) {
-				IPlugin.$("core", "Database successfully linked!");
-				IPlugin.$("core", "Database loaded with " + testResultSet.getInt(1) + " player data rows");
+				AbstractPlugin.$("core", "Database successfully linked!");
+				AbstractPlugin.$("core", "Database loaded with " + testResultSet.getInt(1) + " player data rows");
 			}
 
 			permissions = new Permissions(this);
@@ -58,7 +59,7 @@ public class Core extends JavaPlugin implements Listener, Plugin {
 
 		try {
 			ircbot = new IRCBot();
-			IPlugin.$("core", "IRC bot initialized!");
+			AbstractPlugin.$("core", "IRC bot initialized!");
 		} catch (Exception e) {
 			logger.severe("Couldn't start IRC Bot!");
 			e.printStackTrace();
@@ -75,8 +76,7 @@ public class Core extends JavaPlugin implements Listener, Plugin {
 	@EventHandler
 	public void nonModulePlugins(PluginEnableEvent e) {
 		Class clazz = e.getPlugin().getClass();
-		if (!clazz.isAssignableFrom(IPlugin.class)) {
-			IPlugin.$("core", "Non-modular plugin " + e.getPlugin().getName() + " found!");
-		}
+		if (!clazz.isAssignableFrom(AbstractPlugin.class))
+			AbstractPlugin.$("core", "Non-modular plugin " + e.getPlugin().getName() + " found!");
 	}
 }
