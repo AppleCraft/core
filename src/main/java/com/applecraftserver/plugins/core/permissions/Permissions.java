@@ -7,7 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.applecraftserver.plugins.core.IPlugin.$;
+import static com.applecraftserver.plugins.core.AbstractPlugin.$;
+import static com.applecraftserver.plugins.core.Core.logger;
 
 public class Permissions {
 
@@ -38,7 +39,7 @@ public class Permissions {
 
             $("perms", "Loaded " + countGroupsSet.getInt(1) + " permission groups and " + countNodesSet.getInt(1) + " nodes. " + pgcount + " players have been assigned groups.");
         } catch (SQLException ex) {
-            plugin.logger.severe("Connection isn't working!");
+            logger.severe("Connection isn't working!");
             ex.printStackTrace();
         }
     }

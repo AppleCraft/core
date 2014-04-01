@@ -1,18 +1,13 @@
 package com.applecraftserver.plugins.core;
 
 import com.applecraftserver.plugins.core.util.Util;
+import org.bukkit.command.*;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
 
 public class CmdPlugin implements CommandExecutor {
 
@@ -78,7 +73,7 @@ public class CmdPlugin implements CommandExecutor {
             final PluginManager pm = plugin.getServer().getPluginManager();
 
             if (subcmd.equalsIgnoreCase("")) {
-
+                //TODO how about we get some code here
             }
 
         }

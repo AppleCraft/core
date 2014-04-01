@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Libraries">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../Libraries" />
+      <root url="file://$USER_HOME$/Documents/Java/Merinium/libs" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/../Libraries" />
+      <root url="file://$USER_HOME$/Documents/Java/Merinium/libs" />
     </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/../Libraries" recursive="false" />
-    <jarDirectory url="file://$PROJECT_DIR$/../Libraries" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$USER_HOME$/Documents/Java/Merinium/libs" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Documents/Java/Merinium/libs" recursive="false" type="SOURCES" />
   </library>
 </component>
