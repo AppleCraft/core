@@ -12,18 +12,18 @@ public class IRCBot extends ListenerAdapter {
 	private Configuration.Builder config;
 
 	public IRCBot() {
-        config = new Configuration.Builder();
-        config.setName(Core.instance.getConfig().getString("irc.nick"));
-        config.setLogin(Core.instance.getConfig().getString("irc.user"));
-        config.setServer(Core.instance.getConfig().getString("irc.server"), Core.instance.getConfig().getInt("irc.port"), Core.instance.getConfig().getString("irc.serverpass"));
-        config.setNickservPassword(Core.instance.getConfig().getString("irc.nickservpass"));
-        config.setAutoReconnect(Core.instance.getConfig().getBoolean("irc.autoreconnect"));
-        config.addAutoJoinChannel(Core.instance.getConfig().getString("irc.staffchannel"));
-        config.setVersion("Java IRC stuff");
-        config.setCapEnabled(true);
-        config.addListener(this);
-        for (String s : Core.instance.getConfig().getStringList("irc.channels")) {
-            config.addAutoJoinChannel(s);
+		config = new Configuration.Builder();
+		config.setName(Core.instance.getConfig().getString("irc.nick"));
+		config.setLogin(Core.instance.getConfig().getString("irc.user"));
+		config.setServer(Core.instance.getConfig().getString("irc.server"), Core.instance.getConfig().getInt("irc.port"), Core.instance.getConfig().getString("irc.serverpass"));
+		config.setNickservPassword(Core.instance.getConfig().getString("irc.nickservpass"));
+		config.setAutoReconnect(Core.instance.getConfig().getBoolean("irc.autoreconnect"));
+		config.addAutoJoinChannel(Core.instance.getConfig().getString("irc.staffchannel"));
+		config.setVersion("Java IRC stuff");
+		config.setCapEnabled(true);
+		config.addListener(this);
+		for (String s : Core.instance.getConfig().getStringList("irc.channels")) {
+			config.addAutoJoinChannel(s);
 		}
 		pbot = new PircBotX(config.buildConfiguration());
 		$("irc", "Connecting an IRC bot to " + Core.instance.getConfig().getString("irc.server"));

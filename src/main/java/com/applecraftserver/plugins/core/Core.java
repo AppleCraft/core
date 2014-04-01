@@ -18,67 +18,65 @@ import java.util.logging.Logger;
 
 public class Core extends JavaPlugin implements Listener, Plugin {
 
-    public static Core instance;
-    public static final Logger logger = Logger.getLogger("Minecraft");
-    public Connection connection;
-    MySQLConnectionPool pool;
-    public Permissions permissions;
-    public IRCBot ircbot;
+	public static Core instance;
+	public static final Logger logger = Logger.getLogger("Minecraft");
+	public Connection connection;
+	MySQLConnectionPool pool;
+	public Permissions permissions;
+	public IRCBot ircbot;
 
-    @Override
-    public void onLoad() {
-        instance = this;
+	@Override
+	public void onLoad() {
+		instance = this;
 
-        FileConfigurationOptions options = getConfig().options();
-        options.copyDefaults(true);
-        options.copyHeader(true);
-        saveDefaultConfig();
+		FileConfigurationOptions options = getConfig().options();
+		options.copyDefaults(true);
+		options.copyHeader(true);
+		saveDefaultConfig();
 
-        getCommand("plugin").setExecutor(new CmdPlugin(this));
+		getServer().getPluginManager().registerEvents(this, this);
 
-        getServer().getPluginManager().registerEvents(this, this);
+		try {
+			pool = new MySQLConnectionPool("localhost", "root", "password", "server");
+			connection = pool.getConnection();
 
-        try {
-            pool = new MySQLConnectionPool("localhost", "root", "password", "server");
-            connection = pool.getConnection();
+			PreparedStatement testStatement = connection.prepareStatement("SELECT COUNT(id) FROM players");
+			ResultSet testResultSet = testStatement.executeQuery();
+			if (testResultSet.next()) {
+				AbstractPlugin.$("core", "Database successfully linked!");
+				AbstractPlugin.$("core", "Database loaded with " + testResultSet.getInt(1) + " player data rows");
+			}
 
-            PreparedStatement testStatement = connection.prepareStatement("SELECT COUNT(id) FROM players");
-            ResultSet testResultSet = testStatement.executeQuery();
-            if (testResultSet.next()) {
-                AbstractPlugin.$("core", "Database successfully linked!");
-                AbstractPlugin.$("core", "Database loaded with " + testResultSet.getInt(1) + " player data rows");
-            }
+			permissions = new Permissions(this);
 
-            permissions = new Permissions(this);
+		} catch (Exception ex) {
+			logger.severe("JDBC not found! Something's seriously screwed up");
+			ex.printStackTrace();
+			Bukkit.getPluginManager().disablePlugin(this);
+			this.setEnabled(false);
+			return;
+		}
 
-        } catch (Exception ex) {
-            logger.severe("JDBC not found! Something's seriously screwed up");
-            ex.printStackTrace();
-            Bukkit.getPluginManager().disablePlugin(this);
-            this.setEnabled(false);
-            return;
-        }
+		try {
+			ircbot = new IRCBot();
+			AbstractPlugin.$("core", "IRC bot initialized!");
+		} catch (Exception e) {
+			logger.severe("Couldn't start IRC Bot!");
+			e.printStackTrace();
+			ircbot = null;
+		}
 
-        try {
-            ircbot = new IRCBot();
-            AbstractPlugin.$("core", "IRC bot initialized!");
-        } catch (Exception e) {
-            logger.severe("Couldn't start IRC Bot!");
-            e.printStackTrace();
-            ircbot = null;
-        }
+		logger.info("Initialized core");
+	}
 
-        logger.info("Initialized core");
-    }
+	public Connection getConnection() throws SQLException {
+		return pool.getConnection();
+	}
 
-    public Connection getConnection() throws SQLException {
-        return pool.getConnection();
-    }
-
-    @EventHandler
-    public void nonModulePlugins(PluginEnableEvent e) {
-        Class clazz = e.getPlugin().getClass();
-        if (!clazz.isAssignableFrom(AbstractPlugin.class))
-            AbstractPlugin.$("core", "Non-modular plugin " + e.getPlugin().getName() + " found!");
-    }
+	@EventHandler
+	public void nonModulePlugins(PluginEnableEvent e) {
+		Class clazz = e.getPlugin().getClass();
+		if (!clazz.isAssignableFrom(AbstractPlugin.class))
+			AbstractPlugin.$("core", "Non-modular plugin " + e.getPlugin().getName() + " found!");
+	}
 }
