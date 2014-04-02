@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class Core extends JavaPlugin implements Listener, Plugin {
 
 	public static Core instance;
-	public static final Logger logger = Logger.getLogger("Minecraft");
+	public static final Logger logger = getLogger();
 	public Connection connection;
 	MySQLConnectionPool pool;
 	public Permissions permissions;
