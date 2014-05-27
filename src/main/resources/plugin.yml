@@ -2,4 +2,5 @@ name: MR Core
 description: Core plugin
 version: 1.0.0-SNAPSHOT
 author: phroa
+main: com.applecraftserver.plugins.mrcore.MRCore
 depend: [Vault]
