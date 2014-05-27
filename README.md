@@ -1,4 +1,4 @@
 core
 ====
 
-Check out the `crap` branch if you want the old code. This bit's being rewritten.
+Check out the `crap` or `master` branches if you want the old code. Complete rewrite in progress.
