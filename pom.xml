@@ -60,7 +60,7 @@
                         </manifest>
                     </archive>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                        <descriptorRef>shade</descriptorRef>
                     </descriptorRefs>
                 </configuration>
                 <executions>

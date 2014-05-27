@@ -25,8 +25,6 @@ public class MRCore extends JavaPlugin {
         if (!setupEconomy()) getLogger().info("Couldn't set up Vault economy!");
         if (!setupPermissions()) getLogger().info("Couldn't set up Vault permissions!");
 
-
-
     }
 
     // Generic Vault methods
