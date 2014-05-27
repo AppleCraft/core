@@ -1,6 +1,0 @@
-name: core
-main: com.applecraftserver.plugins.core.Main
-description: Core AppleCraft server plugin
-version: 0.0.1-WHYAREYOUUSINGTHIS
-author: Phroa
-authors: [Phroa, aproxy]
