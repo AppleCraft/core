@@ -40,6 +40,7 @@ public abstract class AbstractUserData extends MPlayer implements IConfig {
         isAfk = retrieveIsAfk();
         afkReason = retrieveAfkReason();
 
+        lastActivity = retrieveLastActivity();
 
     }
 
@@ -49,11 +50,13 @@ public abstract class AbstractUserData extends MPlayer implements IConfig {
     public boolean retrieveIsAfk() {
         return configuration.getBoolean("afk.is", false);
     }
-
     public String retrieveAfkReason() {
         return configuration.getString("afk.reason", "");
     }
 
+    private long lastActivity;
 
-
+    private long retrieveLastActivity() {
+        return configuration.getLong("last.activity");
+    }
 }

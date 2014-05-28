@@ -22,6 +22,8 @@ public interface IUser {
     boolean isAfk();
     String getAfkReason();
 
+    long getLastActivity();
+
     void setConfigProperty(String node, Object object);
     Set<String> getConfigKeys();
     Map<String, Object> getConfigMap();
