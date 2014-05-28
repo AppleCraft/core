@@ -1,4 +1,4 @@
-package com.applecraftserver.plugins.mrcore;
+package com.applecraftserver.plugins.mrcore.user;
 
 import org.bukkit.Location;
 import org.bukkit.Server;

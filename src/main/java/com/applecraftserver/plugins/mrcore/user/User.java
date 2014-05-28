@@ -1,6 +1,7 @@
-package com.applecraftserver.plugins.mrcore;
+package com.applecraftserver.plugins.mrcore.user;
 
 import com.applecraftserver.plugins.mrcore.economy.UserAccount;
+import com.applecraftserver.plugins.mrcore.user.MPlayer;
 import org.bukkit.entity.Player;
 
 /*

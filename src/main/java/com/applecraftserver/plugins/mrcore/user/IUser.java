@@ -1,4 +1,4 @@
-package com.applecraftserver.plugins.mrcore;
+package com.applecraftserver.plugins.mrcore.user;
 
 import com.applecraftserver.plugins.mrcore.commands.ICmd;
 import org.bukkit.entity.Player;
@@ -14,23 +14,17 @@ import java.util.Set;
 public interface IUser {
 
     boolean authorized(String thing);
-
     boolean authorized(ICmd cmd);
 
     public String getName();
-
     Player getPlayer();
 
     boolean isAfk();
-
     String getAfkReason();
 
     void setConfigProperty(String node, Object object);
-
     Set<String> getConfigKeys();
-
     Map<String, Object> getConfigMap();
-
     Map<String, Object> getConfigMap(String node);
 
 }

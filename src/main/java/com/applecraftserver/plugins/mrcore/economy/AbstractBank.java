@@ -1,6 +1,6 @@
 package com.applecraftserver.plugins.mrcore.economy;
 
-import com.applecraftserver.plugins.mrcore.User;
+import com.applecraftserver.plugins.mrcore.user.User;
 
 import java.math.BigInteger;
 import java.util.Random;

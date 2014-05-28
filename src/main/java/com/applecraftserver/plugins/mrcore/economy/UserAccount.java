@@ -1,8 +1,6 @@
 package com.applecraftserver.plugins.mrcore.economy;
 
-import com.applecraftserver.plugins.mrcore.User;
-
-import java.util.UUID;
+import com.applecraftserver.plugins.mrcore.user.User;
 
 public class UserAccount extends AbstractBank {
     private final User user;
